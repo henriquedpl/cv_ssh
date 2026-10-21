@@ -36,7 +36,12 @@ func newStyles(r *lipgloss.Renderer) styles {
 	accent := lipgloss.AdaptiveColor{Light: "#2E7DE9", Dark: "#7AA2F7"}
 	subtle := lipgloss.AdaptiveColor{Light: "#6172B0", Dark: "#737AA2"}
 	text := lipgloss.AdaptiveColor{Light: "#3760BF", Dark: "#C0CAF5"}
-	chipBg := lipgloss.AdaptiveColor{Light: "#D5D6DB", Dark: "#292E42"}
+	// Explicit fallbacks: SSH doesn't forward COLORTERM, so most clients get
+	// 256 colors, where #292E42 would otherwise round to navy.
+	chipBg := lipgloss.CompleteAdaptiveColor{
+		Light: lipgloss.CompleteColor{TrueColor: "#D5D6DB", ANSI256: "253", ANSI: "7"},
+		Dark:  lipgloss.CompleteColor{TrueColor: "#292E42", ANSI256: "236", ANSI: "8"},
+	}
 	onAccent := lipgloss.AdaptiveColor{Light: "#FFFFFF", Dark: "#1A1B26"}
 
 	return styles{
