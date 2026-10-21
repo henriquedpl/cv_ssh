@@ -1,0 +1,138 @@
+name: Henrique Lopes
+headline: Data Scientist · Machine Learning · Python · SQL · AWS
+summary: >
+  Data scientist and engineer with experience since 2018 across fintech,
+  health, consumer goods and cloud cost optimization. I build reliable data
+  pipelines and the statistical analysis that sits on top of them, and I'm
+  currently studying Pure Mathematics alongside work.
+
+contact:
+  email: henriquedpl@proton.me
+  linkedin: linkedin.com/in/henriquedpl
+  github: github.com/henriquedpl
+
+experience:
+  - role: Senior Data Analyst
+    company: Autodesk
+    location: Remote
+    period: Aug 2026 – present
+    bullets:
+      - Developed and maintained analytical data workflows supporting reliable, scalable analysis across datasets
+      - Improved data quality and reliability through validation and observability controls, ensuring accurate inputs for downstream analytics and reporting
+      - Analyzed and resolved data issues in production workflows, improving the consistency and reliability of data used for analytical decision-making
+
+  - role: Senior Data Analyst
+    company: DbSeer
+    location: Remote
+    period: Sep 2025 – May 2026
+    bullets:
+      - Led migration of a SQL Server-based data pipeline to a Python architecture, enabling scalable analytical workflows and improved data accessibility
+      - Translated legacy procedures into optimized Python code, improving performance and enabling downstream statistical analysis
+      - Improved observability and reliability of data systems, reducing downtime and enhancing analytical consistency
+
+  - role: Senior Software Engineer
+    company: Wex
+    location: Remote
+    period: May 2025 – Sep 2025
+    bullets:
+      - Led development of a modern data ingestion pipeline for large-scale payment and credit card data using Python and Apache Airflow, ensuring compliance with data security standards and improving scalability and maintainability
+      - Implemented monitoring and observability improvements across microservices handling sensitive financial transaction data, strengthening data integrity controls and enabling early detection of anomalies and quality issues
+
+  - role: Senior Data Analyst
+    company: PepsiCo
+    location: Remote
+    period: Nov 2023 – Dec 2024
+    bullets:
+      - Conducted exploratory data analysis (EDA) and validation on large-scale datasets, identifying inconsistencies and improving data reliability
+      - Reverse-engineered dbt models to map feature-level dependencies, enhancing data lineage and supporting analytical use cases
+      - Integrated logistics and e-commerce datasets, enabling cross-domain analysis and improving operational decision-making
+
+  - role: Senior Software Engineer
+    company: Virtasant
+    location: Remote
+    period: May 2023 – Aug 2023
+    bullets:
+      - Developed Python-based analytical models to evaluate cloud usage patterns, applying statistical analysis to identify cost optimization opportunities (up to 80% savings)
+      - Built ETL pipelines to preprocess and structure large-scale data, enabling downstream analytics and reporting
+
+  - role: Data Engineer
+    company: Color Health
+    location: Remote
+    period: May 2021 – Mar 2023
+    bullets:
+      - Designed and optimized ETL pipelines supporting large-scale analytical workloads in Google BigQuery
+      - Migrated legacy pipelines to dbt and Airflow, improving performance, reliability, and analytical usability
+      - Enabled data accessibility for downstream analysis through scalable and well-structured data systems
+
+  - role: Data Analyst
+    company: BoldMetrics Inc.
+    location: Remote
+    period: Jun 2020 – Aug 2021
+    bullets:
+      - Developed data ingestion and preprocessing pipelines for customer datasets, supporting machine learning model training workflows
+      - Contributed to API and logging improvements, enabling more efficient data processing and analysis
+      - Automated data preparation processes, improving efficiency in model development pipelines
+
+  - role: Data Analyst and Engineer
+    company: Warren Investimentos
+    location: Porto Alegre, Brazil
+    period: Jun 2018 – May 2020
+    bullets:
+      - Developed customer segmentation models and churn analysis using SQL and Python, enabling targeted business strategies and improved customer retention
+      - Built and maintained a data lake and data warehouse architecture for large-scale analytics
+      - Implemented event-tracking pipelines and enabled exploratory data analysis across multiple business domains
+      - Defined key business metrics, enabling data-driven decision-making across teams
+
+projects:
+  - name: Portfolio Optimization (Markowitz Efficient Frontier)
+    stack: NumPy, Pandas, SciPy, yfinance
+    url: github.com/henriquedpl/markowitz-model-for-portfolio-optimization
+    bullets:
+      - Quantitative finance model implementing Modern Portfolio Theory to optimize asset allocation under risk constraints
+      - Statistical estimation of expected returns and covariance matrices from historical time-series data
+      - Formulated and solved a constrained quadratic optimization problem to compute the efficient frontier
+      - Exploratory analysis of asset behavior and visualization of risk-return trade-offs
+
+  - name: Project Euler
+    stack: Algorithmic and mathematical problem solving
+    url: github.com/henriquedpl/project-euler
+    bullets:
+      - Solved 115+ computational problems combining mathematics and computer science
+      - Applied algorithmic optimization, numerical methods, and analytical reasoning to complex problems
+
+skills:
+  - category: Programming
+    items: [Python, Pandas, NumPy, SciPy, scikit-learn, SQL]
+  - category: Data Science
+    items: [Statistical Analysis, Feature Engineering, EDA, Regression, Classification, Model Evaluation, Time Series Analysis, Optimization]
+  - category: Data Engineering
+    items: [ETL Pipelines, Airflow, dbt, BigQuery, AWS S3, Athena, Glue]
+  - category: Visualization
+    items: [Matplotlib, Data Analysis & Reporting]
+  - category: Concepts
+    items: [Machine Learning, Data Modeling, Supervised & Unsupervised Learning, Reinforcement Learning]
+  - category: Tools
+    items: [Git, Docker, Cloud Platforms]
+
+education:
+  - school: Federal University of Rio Grande do Sul
+    degree: Bachelor in Pure Mathematics
+    location: Porto Alegre, Brazil
+    date: Dec 2028 (expected)
+  - school: Federal University of Rio Grande do Sul
+    degree: Bachelor in Computer Science
+    location: Porto Alegre, Brazil
+    date: Dec 2019
+  - school: Rijksuniversiteit Groningen
+    degree: 1-year International Scholarship
+    location: Groningen, Netherlands
+    date: "2014"
+
+certifications:
+  - name: AWS Certified Solutions Architect – Associate
+    issuer: Amazon Web Services
+    date: Mar 2024 · valid until Mar 2027
+  - name: Mathematics for Machine Learning
+    issuer: Imperial College London
+    date: Mar 2026
+    items: [Linear Algebra, Multivariate Calculus, PCA]
