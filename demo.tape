@@ -15,7 +15,7 @@ Set TypingSpeed 60ms
 
 # Build and start the server off-camera.
 Hide
-Type "go build -o ssh_henrique . && (./ssh_henrique >/dev/null 2>&1 &) && sleep 1"
+Type "go build -o cv_ssh . && (./cv_ssh >/dev/null 2>&1 &) && sleep 1"
 Enter
 # Skip host-key prompts for the throwaway local server.
 Type `ssh() { command ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR "$@"; }; clear`
@@ -60,5 +60,5 @@ Sleep 500ms
 
 # Stop the server off-camera.
 Hide
-Type "pkill -f '^./ssh_henrique$'"
+Type "pkill -f '^./cv_ssh$'"
 Enter

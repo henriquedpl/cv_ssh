@@ -1,4 +1,4 @@
-# ssh_henrique
+# cv_ssh
 
 My CV, served as a terminal app over SSH. No browser, no PDF: just `ssh` in and browse.
 
@@ -11,8 +11,8 @@ Built with [Wish](https://github.com/charmbracelet/wish), [Bubble Tea](https://g
 Requires Go 1.27+.
 
 ```sh
-go build -o ssh_henrique .
-./ssh_henrique
+go build -o cv_ssh .
+./cv_ssh
 ```
 
 Then, in another terminal:

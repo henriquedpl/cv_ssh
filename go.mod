@@ -1,4 +1,4 @@
-module ssh_henrique
+module cv_ssh
 
 go 1.27.1
 
