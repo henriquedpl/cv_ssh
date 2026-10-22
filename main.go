@@ -31,6 +31,15 @@ func main() {
 		log.Fatal("could not parse cv.yaml", "error", err)
 	}
 
+	// `cv_ssh site <dir>` writes the website instead of starting the server.
+	if len(os.Args) == 3 && os.Args[1] == "site" {
+		if err := buildSite(cv, os.Args[2]); err != nil {
+			log.Fatal("could not build site", "error", err)
+		}
+		log.Info("site written", "dir", os.Args[2])
+		return
+	}
+
 	host := getenv("CV_HOST", "0.0.0.0")
 	port := getenv("CV_PORT", "23234")
 	keyPath := getenv("CV_HOST_KEY", ".ssh/id_ed25519")

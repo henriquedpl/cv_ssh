@@ -1,0 +1,19 @@
+# Website for henriquelop.es. Caddy gets and renews the HTTPS certificates.
+# Installed to /etc/caddy/Caddyfile by deploy.sh.
+
+henriquelop.es {
+	root * /var/www/henriquelop.es
+	file_server
+	encode zstd gzip
+
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		-Server
+	}
+}
+
+www.henriquelop.es {
+	redir https://henriquelop.es{uri} permanent
+}

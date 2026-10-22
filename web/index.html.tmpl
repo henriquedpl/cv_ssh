@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{.Name}}</title>
+<meta name="description" content="{{.Name}}: {{.Headline}}. Also available in your terminal: ssh henriquelop.es">
+<meta name="theme-color" content="#16161e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a1b26'/%3E%3Cpath d='M7 22 13 15 18 18 25 9' fill='none' stroke='%237aa2f7' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Recursive:slnt,wght,CASL,CRSV,MONO@-15..0,300..1000,0..1,0..1,0..1&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+<header class="masthead">
+  <div class="who">
+    <h1>{{.Name}}</h1>
+    <p class="headline">{{.Headline}}</p>
+    <p class="summary">{{trim .Summary}}</p>
+  </div>
+  <div class="live">
+    <span class="dot" aria-hidden="true"></span>
+    <span>Also live in your terminal</span>
+    <code>ssh henriquelop.es</code>
+    <button type="button" class="copy" data-copy="ssh henriquelop.es">Copy</button>
+  </div>
+</header>
+
+<div class="ticker" aria-hidden="true"><div class="ticker-track" id="ticker"></div></div>
+
+<main class="board">
+
+  <section class="panel p-term" aria-labelledby="term-h">
+    <div class="panel-head">
+      <h2 id="term-h">Terminal</h2>
+      <span class="meta">the SSH version, running in your browser</span>
+    </div>
+    <div class="term-chrome">
+      <span class="lights" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="term-title">henriquelop.es — ssh</span>
+    </div>
+    <div class="term" id="term" tabindex="0" role="application" aria-label="Interactive terminal CV. Use arrow keys or numbers 1 to 6.">
+      <noscript><p class="term-noscript">Turn on JavaScript to try the terminal here, or run <code>ssh henriquelop.es</code>.</p></noscript>
+    </div>
+    <p class="term-hint">Click it, then use <kbd>←</kbd> <kbd>→</kbd>, <kbd>1</kbd>–<kbd>6</kbd> and <kbd>↑</kbd> <kbd>↓</kbd>, same keys as over SSH.</p>
+  </section>
+
+  <section class="panel p-clock" aria-labelledby="clock-h">
+    <div class="panel-head">
+      <h2 id="clock-h">Years working with data</h2>
+    </div>
+    <p class="hero-figure" id="years">8.3</p>
+    <p class="hero-note" id="years-note">and counting, live</p>
+    <dl class="tiles">
+      <div><dt>Roles</dt><dd>{{len .Experience}}</dd></div>
+      <div><dt>Project Euler problems</dt><dd>115+</dd></div>
+      <div><dt>Certifications</dt><dd>{{len .Certifications}}</dd></div>
+    </dl>
+    {{with index .Experience 0}}
+    <p class="now">Now: <strong>{{.Role}}</strong> at {{.Company}}</p>
+    {{end}}
+    <h3 class="sub-h">Up next</h3>
+    <ul class="upnext" id="upnext"></ul>
+  </section>
+
+  <section class="panel p-career" aria-labelledby="career-h">
+    <div class="panel-head">
+      <h2 id="career-h">Career timeline</h2>
+      <span class="meta">select a bar to read the role</span>
+    </div>
+    <figure class="chart">
+      <div class="timeline" id="timeline"></div>
+      <div class="tooltip" id="tl-tip" role="status" hidden></div>
+    </figure>
+    <div class="roles" id="roles">
+      {{range $i, $j := .Experience}}
+      <details class="role" name="roles" id="role-{{$i}}" {{if eq $i 0}}open{{end}}>
+        <summary>
+          <span class="role-title">{{$j.Role}}, <span class="co">{{$j.Company}}</span></span>
+          <span class="role-when">{{$j.Period}}</span>
+        </summary>
+        <p class="role-where">{{$j.Location}}</p>
+        <ul>{{range $j.Bullets}}<li>{{.}}</li>{{end}}</ul>
+      </details>
+      {{end}}
+    </div>
+  </section>
+
+  <section class="panel p-projects" aria-labelledby="proj-h">
+    <div class="panel-head">
+      <h2 id="proj-h">Projects</h2>
+    </div>
+    {{range $i, $p := .Projects}}
+    <article class="project">
+      <h3><a href="https://{{$p.URL}}">{{$p.Name}}</a></h3>
+      <p class="stack">{{$p.Stack}}</p>
+      {{if eq $i 0}}
+      <figure class="chart frontier-fig">
+        <div class="frontier" id="frontier"></div>
+        <div class="tooltip" id="fr-tip" role="status" hidden></div>
+        <figcaption>The efficient frontier on a toy example: three made-up assets, short selling allowed. Hover the curve to see the mix of weights at each point.</figcaption>
+      </figure>
+      {{end}}
+      <ul>{{range $p.Bullets}}<li>{{.}}</li>{{end}}</ul>
+    </article>
+    {{end}}
+  </section>
+
+  <section class="panel p-skills" aria-labelledby="skills-h">
+    <div class="panel-head">
+      <h2 id="skills-h">Toolkit</h2>
+    </div>
+    {{range .Skills}}
+    <div class="skill-group">
+      <h3>{{.Category}}</h3>
+      <ul class="chips">{{range .Items}}<li>{{.}}</li>{{end}}</ul>
+    </div>
+    {{end}}
+  </section>
+
+  <section class="panel p-edu" aria-labelledby="edu-h">
+    <div class="panel-head">
+      <h2 id="edu-h">Education and certifications</h2>
+    </div>
+    <ul class="edu">
+      {{range .Education}}
+      <li>
+        <span class="edu-what"><strong>{{.Degree}}</strong><span>{{.School}}, {{.Location}}</span></span>
+        <span class="edu-when">{{.Date}}</span>
+      </li>
+      {{end}}
+      {{range .Certifications}}
+      <li>
+        <span class="edu-what"><strong>{{.Name}}</strong><span>{{.Issuer}}{{if .Items}}: {{join .Items ", "}}{{end}}</span></span>
+        <span class="edu-when">{{.Date}}</span>
+      </li>
+      {{end}}
+    </ul>
+  </section>
+
+  <section class="panel p-contact" aria-labelledby="contact-h">
+    <div class="panel-head">
+      <h2 id="contact-h">Get in touch</h2>
+    </div>
+    <ul class="contact">
+      <li><span>Email</span><a href="mailto:{{.Contact.Email}}">{{.Contact.Email}}</a></li>
+      <li><span>LinkedIn</span><a href="https://{{.Contact.LinkedIn}}">{{.Contact.LinkedIn}}</a></li>
+      <li><span>GitHub</span><a href="https://{{.Contact.GitHub}}">{{.Contact.GitHub}}</a></li>
+      <li><span>Terminal</span><code>ssh henriquelop.es</code></li>
+    </ul>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <p>Generated from the same <code>cv.yaml</code> as the SSH version. <a href="https://github.com/henriquedpl/cv_ssh">Source on GitHub</a>.</p>
+</footer>
+
+<script type="application/json" id="cv-data">{{cvJSON}}</script>
+<script src="site.js"></script>
+</body>
+</html>

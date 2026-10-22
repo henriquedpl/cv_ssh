@@ -93,23 +93,46 @@ ssh cv-server '
 
 The `.ssh/id_ed25519` copied here is the CV server's identity (not your personal key). Keeping it stable avoids "host key changed" warnings for visitors.
 
-## 6. Deploy (laptop)
+## 6. Website: install Caddy (one time)
+
+Lightsail → instance → **Networking** → IPv4 Firewall: add **HTTP (80)** and **HTTPS (443)**.
+
+In DonDominio's DNS zone, point `www` at the domain: **CNAME** `www` → `henriquelop.es`.
+
+Then install Caddy from its official repository (**laptop**):
+
+```sh
+ssh cv-server '
+  sudo apt-get update &&
+  sudo apt-get install -y debian-keyring debian-archive-keyring apt-transport-https curl gnupg &&
+  curl -1sLf https://dl.cloudsmith.io/public/caddy/stable/gpg.key | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg &&
+  curl -1sLf https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt | sudo tee /etc/apt/sources.list.d/caddy-stable.list &&
+  sudo chmod o+r /usr/share/keyrings/caddy-stable-archive-keyring.gpg /etc/apt/sources.list.d/caddy-stable.list &&
+  sudo apt-get update && sudo apt-get install -y caddy
+'
+```
+
+`deploy.sh` installs `deploy/Caddyfile` and the site on every run. Caddy gets the HTTPS certificates by itself on first start.
+
+## 7. Deploy (laptop)
 
 ```sh
 ./deploy.sh
 ```
 
-It builds, uploads, restarts the service, and prints `active` on success.
+It builds the binary and the website, uploads both, restarts cv_ssh, reloads Caddy, and prints `active` twice on success.
 
-## 7. Try it
+## 8. Try it
 
 ```sh
 ssh henriquelop.es
 ```
 
+and open https://henriquelop.es.
+
 ## Updating the CV later
 
-Edit `cv.yaml`, then run `./deploy.sh`. That's it.
+Edit `cv.yaml`, then run `./deploy.sh`. That updates the terminal CV and the website together.
 
 ## Troubleshooting
 
@@ -119,3 +142,4 @@ Edit `cv.yaml`, then run `./deploy.sh`. That's it.
 | `address already in use` in logs | sshd still on 22: redo step 3e |
 | Connection hangs / times out | Lightsail firewall missing the port |
 | `REMOTE HOST IDENTIFICATION HAS CHANGED` | `ssh-keygen -R henriquelop.es` on the laptop |
+| Website down or certificate errors | `journalctl -u caddy -n 50`; check ports 80/443 are open |
