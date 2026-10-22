@@ -1,0 +1,26 @@
+[Unit]
+Description=CV served over SSH (cv_ssh)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=cvssh
+Group=cvssh
+WorkingDirectory=/opt/cv_ssh
+ExecStart=/opt/cv_ssh/cv_ssh
+Environment=CV_PORT=22
+Environment=CV_HOST_KEY=/opt/cv_ssh/.ssh/id_ed25519
+Restart=on-failure
+RestartSec=2
+
+# Allow binding port 22 without running as root, and nothing else.
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/opt/cv_ssh/.ssh
+
+[Install]
+WantedBy=multi-user.target

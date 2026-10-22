@@ -2,6 +2,10 @@
 
 My CV, served as a terminal app over SSH. No browser, no PDF: just `ssh` in and browse.
 
+```sh
+ssh henriquelop.es
+```
+
 ![Demo](demo.gif)
 
 Built with [Wish](https://github.com/charmbracelet/wish), [Bubble Tea](https://github.com/charmbracelet/bubbletea) and [Lip Gloss](https://github.com/charmbracelet/lipgloss), using a Tokyo Night color scheme that adapts to light and dark terminals.
@@ -54,6 +58,14 @@ The GIF above is generated with [VHS](https://github.com/charmbracelet/vhs) from
 vhs demo.tape
 ```
 
+## Deployment
+
+Runs on a small AWS Lightsail instance as a systemd service on port 22. See [`DEPLOY.md`](DEPLOY.md) for the full setup; updates are just:
+
+```sh
+./deploy.sh
+```
+
 ## Project layout
 
 ```
@@ -62,4 +74,7 @@ cv.go      cv.yaml schema and loading
 model.go   Bubble Tea model: tabs, layout and styles
 cv.yaml    CV content
 demo.tape  VHS script that records demo.gif
+deploy.sh  build, upload and restart on the server
+deploy/    systemd unit
+DEPLOY.md  server setup guide
 ```
